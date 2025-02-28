@@ -4,7 +4,6 @@ import numpy as np
 import plotly.express as px
 
 st.page_link("./pages/calculation.py", label="Page  Refresh") 
-st.write(st.session_state)
 if "authentication_status" not in st.session_state:
     st.switch_page("./app.py")
 
