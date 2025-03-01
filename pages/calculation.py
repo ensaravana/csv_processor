@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
-st.page_link("./pages/calculation.py", label="Page  Refresh") 
+# st.page_link("./pages/calculation.py", label="Page  Refresh") 
 if "authentication_status" not in st.session_state:
     st.switch_page("./app.py")
 
@@ -12,15 +12,10 @@ st.sidebar.button("Logout",key="nga",on_click = st.session_state.logout)
  
     
 def callme():
-    file = st.file_uploader("upload your file",type=['csv','xlsx'])
+    file = st.file_uploader("Upload your CSV file",type=['csv'])
     if file is not None:
-        if file.name.split(".")[1] == "csv":
-            file2 = pd.read_csv(file)
-        if file.name.split(".")[1] == "xlsx":
-            file2 = pd.read_excel(file)
-        # elif file.name.split(".")[1] == "xlsx" or file.name.split(".")[1] == "csv":
-        #     st.warning("only csv and excel  allowed")    
-        excel_data1 = pd.DataFrame(file2,dtype="object")
+        file2 = pd.read_csv(file)    
+        excel_data1 = pd.DataFrame(file2)
         s= {
              
          }
@@ -63,28 +58,28 @@ def callme():
 
                     if ":" in j:
                         time.append(j)
-            # print(dates,month,years,quarter)     
+            # print(dates,month,years,quarter)
+            z=0     
             for select in selection:
-                z=0
                 if select == "dates":            
                     a.insert(loc=z,column="Dates",value=np.array(dates) )
-                    z=+1  
+                    z=z+1
                     # print(z,"1")
                 if select == "month":    
                     a.insert(loc=z,column="Month",value=np.array(month) )
-                    z=+1
+                    z=z+1
                     # print(z,"2")
                 if select == "years": 
                     a.insert(loc=z,column="Year",value=np.array(years) )
-                    z=+1
+                    z=z+1
                     # print(z,"3")
                 if select == "quarter":    
                     a.insert(loc=z,column="Quarter",value=np.array(quarter) )
-                    z=+1
+                    z=z+1
                     # print(z,"4")
             count = z
             # print(count,"count")  
-
+            print("naga")
             for name in excel_data1.columns:  
                  numb = count
                  for op in options:
